@@ -1,21 +1,29 @@
-name: codequality tes
+name: codequality
 
 on:
- push:
-   branches:
-     -master 
- workflow_dispatch:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
 
 jobs:
- linting:
-   name: linting_project
-   runs-on: ubuntu:latest
-   steps:
-    - uses: actions/checkout@v2
-    - name: "checking out"
+  linting:
+    name: Linting Project
+    runs-on: ubuntu-latest
 
-    - run: npm install eslint
-    - run: npx eslint 
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Install ESLint
+        run: npm install eslint --save-dev
+
+      - name: Run ESLint
+        run: npx eslint .
+
 
 
   
